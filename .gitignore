@@ -1,0 +1,12 @@
+node_modules
+node_modules
+node_modules
+
+# Ignore credential files that should never be committed
+backend-node/gcloud-key.json
+backend-node/*.key.json
+backend-node/.env
+scripts/recovered-backend/gcloud-key.json
+*.secret
+*.key
+

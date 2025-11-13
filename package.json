@@ -1,0 +1,53 @@
+{
+  "name": "circleci-docs",
+  "version": "1.0.0",
+  "description": "his is the public repository for <https://circleci.com/docs/>, a static website generated with [Antora](https://antora.org/).",
+  "scripts": {
+    "start:dev": "dotenvx run -- npm run build:ui && gulp preview:docs",
+    "build": "npm run build:docs",
+    "octokit:cli": "node scripts/octokit-cli.js",
+    "octokit:pr-list": "node scripts/octokit-cli.js pr:list",
+  "test:octokit": "npx jest scripts/octokit --runInBand",
+  "test:automerge": "npx jest scripts/actions --runInBand",
+  "test": "npx jest --runInBand",
+    "htmlproofer:dev": "htmlproofer ./build --ignore-empty-alt --checks 'Links,Images' --disable-external --swap-urls '^/docs/:/' --ignore-files './build/api/v1/index.html,./build/api/v2/index.html' --ignore-urls '[url],[path]'",
+    "preview:ui": "dotenvx run -- gulp preview:ui",
+    "build:ui": "gulp build:ui",
+    "build:api-docs": "gulp build:api-docs",
+    "octokit:test": "node scripts/octokit-test.js",
+    "build:docs": "npm run build:ui && gulp build:docs",
+    "fetch-server-branches": "chmod +x scripts/fetch-server-branches.sh && ./scripts/fetch-server-branches.sh"
+  },
+  
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/circleci/circleci-docs.git"
+  },
+  "license": "",
+  "type": "commonjs",
+  "devDependencies": {
+    "@babel/preset-env": "^7.28.5",
+    "@babel/preset-react": "^7.28.5",
+    "@dotenvx/dotenvx": "^1.40.0",
+    "@eslint/js": "^9.39.1",
+    "browser-sync": "^3.0.4",
+    "eslint": "^8.57.1",
+    "eslint-plugin-react": "^7.37.5",
+    "ev-emitter": "^2.1.2",
+    "gulp": "^5.0.0",
+    "jest": "^29.6.1",
+    "require-directory": "^2.1.1",
+    "sqlite3": "^5.1.7",
+    "stripe": "^19.3.0",
+    "undertaker": "^2.0.0"
+  
+  },
+  "dependencies": {
+    "@octokit/rest": "^22.0.1",
+    "algoliasearch": "^5.25.0",
+    "commander": "^14.0.2",
+    "node-html-parser": "^7.0.1",
+    "react-router-dom": "^7.9.5",
+    "reading-time": "^1.5.0"
+  }
+}
