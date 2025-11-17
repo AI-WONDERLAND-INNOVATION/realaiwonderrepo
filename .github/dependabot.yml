@@ -1,42 +1,46 @@
 # .github/dependabot.yml
 version: 2
 updates:
+  # NPM Packages
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "daily"
     open-pull-requests-limit: 5
-    rebase-strategy: "auto"
-    labels:
-      - "dependencies"
     commit-message:
       prefix: "chore(deps):"
-    # Auto-merge once CI passes and branch protection allows it
-    pull-request-branch-name:
-      separator: "-"
-    enable-beta-ecosystems: false
-    automerge: true
+    labels:
+      - "dependencies"
+      - "security"
+    # Only auto-merge patch/minor updates when CI passes
+    versioning-strategy: "increase"
+    security-updates-only: false
+    rebase-strategy: "auto"
 
+  # Docker Images
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 3
+    commit-message:
+      prefix: "chore(deps): docker"
     labels:
       - "dependencies"
       - "docker"
-    commit-message:
-      prefix: "chore(deps): docker"
-    automerge: true
+    versioning-strategy: "increase"
+    rebase-strategy: "auto"
 
+  # GitHub Actions
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 5
+    commit-message:
+      prefix: "chore(deps): actions"
     labels:
       - "dependencies"
       - "github-actions"
-    commit-message:
-      prefix: "chore(deps): actions"
-    automerge: true
+    versioning-strategy: "increase"
+    rebase-strategy: "auto"
