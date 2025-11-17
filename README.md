@@ -105,7 +105,81 @@ The application follows React best practices and modern patterns:
 
 ## Project Structure
 
-```
+```frontend-builder/
+├── app/
+│   ├── layout.tsx
+│   ├── page.tsx
+│   ├── builder/
+│   │   ├── page.tsx
+│   │   ├── components.json          # schema for components
+│   │   └── actions/
+│   │       └── saveProject.ts
+│   ├── dashboard/
+│   │   └── page.tsx
+│   ├── analytics/
+│   │   └── page.tsx
+│   ├── projects/
+│   │   ├── page.tsx
+│   │   └── [id]/
+│   │       └── page.tsx
+│   └── api/
+│       ├── ai/
+│       │   └── generate.ts
+│       ├── domain/
+│       │   ├── verify.ts
+│       │   └── configure.ts
+│       ├── analytics/
+│       │   └── track.ts
+│       └── projects/
+│           ├── create.ts
+│           ├── get.ts
+│           ├── update.ts
+│           └── delete.ts
+│
+├── components/
+│   ├── builder/
+│   │   ├── Canvas.tsx
+│   │   ├── ComponentPalette.tsx
+│   │   ├── PropertiesPanel.tsx
+│   │   ├── CodeExportModal.tsx
+│   │   └── ElementWrapper.tsx
+│   ├── analytics/
+│   │   └── AnalyticsCard.tsx
+│   └── ui/
+│       ├── Button.tsx
+│       ├── Input.tsx
+│       └── Header.tsx
+│
+├── contexts/
+│   ├── AppContext.tsx
+│   ├── BuilderContext.tsx
+│   └── UserContext.tsx
+│
+├── hooks/
+│   ├── useDragDrop.ts
+│   ├── useCodeExport.ts
+│   ├── useAnalytics.ts
+│   └── useProject.ts
+│
+├── services/
+│   ├── aiService.ts
+│   ├── domainService.ts
+│   ├── apiGenerator.ts
+│   ├── analyticsService.ts
+│   └── exportService.ts
+│
+├── types/
+│   ├── builder.ts
+│   ├── project.ts
+│   └── analytics.ts
+│
+├── public/
+│   └── placeholder.png
+│
+├── tailwind.config.js
+├── tsconfig.json
+├── package.json
+└── next.config.js
 
 ```
 
@@ -129,38 +203,6 @@ npm install
 
 ```bash
 npm start
-frontend-builder/
-├── app/                      # Next.js app directory (App Router)
-│   ├── analytics/            # Analytics dashboard page
-│   ├── builder/              # Main builder interface
-│   ├── dashboard/            # User dashboard
-│   ├── projects/             # Projects list page
-│   ├── layout.tsx            # Root layout with providers (contexts, themes)
-│   └── page.tsx              # Home/landing page
-├── components/               # Reusable UI + feature-specific components
-│   ├── analytics/            # Analytics components
-│   ├── builder/              # Drag-drop editor components
-│   │   ├── Canvas.tsx        # Drag-drop canvas
-│   │   ├── ComponentPalette.tsx # Component selector
-│   │   ├── PropertiesPanel.tsx  # Property editor
-│   │   └── CodeExportModal.tsx  # Code export UI
-│   └── ui/                   # Shared UI components
-│       └── Header.tsx        # Navigation header
-├── contexts/                 # Global state management
-│   ├── AppContext.tsx        # Project management context
-│   ├── BuilderContext.tsx    # Builder state context
-│   └── UserContext.tsx       # User authentication context
-├── hooks/                    # Custom React hooks
-│   ├── useAnalytics.ts       # Analytics hook
-│   ├── useCodeExport.ts      # Code export hook
-│   └── useDragDrop.ts        # Drag-drop hook
-├── services/                 # Business logic services
-│   ├── aiService.ts          # AI integration
-│   ├── analyticsService.ts   # Analytics tracking
-│   ├── apiGenerator.ts       # API generation
-│   └── domainService.ts      # Domain management
-└── types/                    # TypeScript definitions
-    └── index.ts              # Shared type definitions
 ```
 
 ### Running with Docker
