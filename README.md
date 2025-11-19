@@ -106,80 +106,133 @@ The application follows React best practices and modern patterns:
 ## Project Structure
 
 ```frontend-builder/
-├── app/
-│   ├── layout.tsx
+app/
+├── layout.tsx
+├── page.tsx
+
+├── auth/                               # Authentication system
+│   ├── login/page.tsx
+│   ├── register/page.tsx
+│   ├── verify-2fa/page.tsx
+│   ├── reset-password/page.tsx
+│   └── settings/page.tsx
+
+├── wonder-build/                       # Main builder
 │   ├── page.tsx
-│   ├── builder/
-│   │   ├── page.tsx
-│   │   ├── components.json          # schema for components
+│   ├── components.json                 # Component schema
+│   ├── actions/
+│   │   ├── saveProject.ts
+│   │   ├── autoSave.ts                 # Silent autosave to cloud
+│   │   ├── createSnapshot.ts           # Restore point creation
+│   │   └── restoreSnapshot.ts          # Recover a previous version
+│   ├── marketplace/
+│   │   ├── MarketplacePanel.tsx
+│   │   ├── ExtensionCard.tsx
 │   │   └── actions/
-│   │       └── saveProject.ts
-│   ├── dashboard/
-│   │   └── page.tsx
-│   ├── analytics/
-│   │   └── page.tsx
+│   │       └── purchaseExtension.ts
+│   ├── live-preview/
+│   │   ├── LivePreview.tsx
+│   │   └── hooks/useLivePreview.ts
+│   └── recovery/                       # Recovery UI
+│       └── RecoveryPanel.tsx           # UI for choosing cloud snapshots
+
+├── dashboard/page.tsx
+├── analytics/page.tsx
+
+├── projects/
+│   ├── page.tsx
+│   ├── recovery/page.tsx               # Entire project recovery center
+│   └── [id]/
+│       └── page.tsx
+
+├── api/
+│   ├── auth/
+│   │   ├── login.ts
+│   │   ├── register.ts
+│   │   ├── logout.ts
+│   │   ├── request-2fa.ts
+│   │   ├── verify-2fa.ts
+│   │   ├── reset-password.ts
+│   │   └── update-settings.ts
+
+│   ├── wonder-build/
+│   │   └── marketplace/
+│   │       ├── list.ts
+│   │       └── install.ts
+
 │   ├── projects/
-│   │   ├── page.tsx
-│   │   └── [id]/
-│   │       └── page.tsx
-│   └── api/
-│       ├── ai/
-│       │   └── generate.ts
-│       ├── domain/
-│       │   ├── verify.ts
-│       │   └── configure.ts
-│       ├── analytics/
-│       │   └── track.ts
-│       └── projects/
-│           ├── create.ts
-│           ├── get.ts
-│           ├── update.ts
-│           └── delete.ts
-│
-├── components/
-│   ├── builder/
-│   │   ├── Canvas.tsx
-│   │   ├── ComponentPalette.tsx
-│   │   ├── PropertiesPanel.tsx
-│   │   ├── CodeExportModal.tsx
-│   │   └── ElementWrapper.tsx
-│   ├── analytics/
-│   │   └── AnalyticsCard.tsx
-│   └── ui/
-│       ├── Button.tsx
-│       ├── Input.tsx
-│       └── Header.tsx
-│
-├── contexts/
-│   ├── AppContext.tsx
-│   ├── BuilderContext.tsx
-│   └── UserContext.tsx
-│
-├── hooks/
-│   ├── useDragDrop.ts
-│   ├── useCodeExport.ts
-│   ├── useAnalytics.ts
-│   └── useProject.ts
-│
-├── services/
-│   ├── aiService.ts
-│   ├── domainService.ts
-│   ├── apiGenerator.ts
-│   ├── analyticsService.ts
-│   └── exportService.ts
-│
-├── types/
-│   ├── builder.ts
-│   ├── project.ts
-│   └── analytics.ts
-│
-├── public/
-│   └── placeholder.png
-│
-├── tailwind.config.js
-├── tsconfig.json
-├── package.json
-└── next.config.js
+│   │   ├── create.ts
+│   │   ├── get.ts
+│   │   ├── update.ts
+│   │   ├── delete.ts
+│   │   ├── autosave.ts                 # Cloud autosave endpoint
+│   │   ├── snapshot.ts                 # Create snapshot
+│   │   └── restore.ts                  # Restore snapshot
+
+│   ├── domain/
+│   │   ├── verify.ts
+│   │   └── configure.ts
+
+│   ├── analytics/track.ts
+│   └── ai/generate.ts
+
+components/
+├── wonder-build/
+│   ├── Canvas.tsx
+│   ├── ComponentPalette.tsx
+│   ├── PropertiesPanel.tsx
+│   ├── ElementWrapper.tsx
+│   ├── CodeExportModal.tsx
+│   └── MarketplacePanel.tsx
+├── recovery/
+│   └── SnapshotItem.tsx                # Small tiles representing each backup
+└── ui/
+    ├── Button.tsx
+    ├── Input.tsx
+    └── Header.tsx
+
+contexts/
+├── AppContext.tsx
+├── AuthContext.tsx                     # Logged-in + 2FA status
+├── UserContext.tsx
+└── WonderBuildContext.tsx              # Builder + marketplace + recovery state
+
+hooks/
+├── useAuth.ts
+├── useProtectedRoute.ts
+├── useDragDrop.ts
+├── useCodeExport.ts
+├── useAnalytics.ts
+├── useProject.ts                       # Load/save project logic
+└── useRecovery.ts                      # Manage snapshots & restore
+
+services/
+├── authService.ts
+├── twoFactorService.ts                 # 2FA generation + verification
+├── aiService.ts
+├── domainService.ts
+├── analyticsService.ts
+├── exportService.ts
+├── marketplaceService.ts
+└── recoveryService.ts                  # Interacts with snapshot & restore APIs
+
+types/
+├── builder.ts
+├── project.ts
+├── analytics.ts
+└── recovery.ts                         # Snapshot type definitions
+
+public/
+└── placeholder.png
+
+scripts/
+├── backupProjects.ts                   # Nightly backup cron
+└── pruneSnapshots.ts                   # Remove old versions safely
+
+next.config.js
+package.json
+tailwind.config.js
+tsconfig.json
 
 ```
 
