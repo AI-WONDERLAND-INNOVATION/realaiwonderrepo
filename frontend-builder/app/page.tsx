@@ -8,7 +8,7 @@ import dynamic from 'next/dynamic'
 // Monaco must be dynamically imported for Next.js client usage
 const MonacoEditor = dynamic(() => import('@monaco-editor/react'), { ssr: false })
 
-const TOP_ICONS = ['Home', 'Apps', 'Marketplace', 'Sponsors', 'Profile']
+const TOP_ICONS = ['Home', 'Workshop', 'WonderSpace', 'Sponsors', 'Profile']
 const GRID_ICONS = [
   'Models', 'Proposals', 'Duograms',
   'BuilderHub', 'DreamStack', 'Threads',
