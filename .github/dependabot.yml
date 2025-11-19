@@ -1,11 +1,43 @@
 version: 2
 updates:
+       wonderingtribe-patch-1
+  # NPM Packages
+
   # NPM dependencies
+        main
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "daily"
     open-pull-requests-limit: 5
+       wonderingtribe-patch-1
+    commit-message:
+      prefix: "chore(deps):"
+    labels:
+      - "dependencies"
+      - "security"
+    # Only auto-merge patch/minor updates when CI passes
+    versioning-strategy: "increase"
+    security-updates-only: true
+    rebase-strategy: "auto"
+
+  # Docker Images
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "chore(deps): docker"
+    labels:
+      - "dependencies"
+      - "docker"
+    versioning-strategy: "increase"
+    rebase-strategy: "auto"
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+
     labels:
       - "dependencies"
 
@@ -27,6 +59,7 @@ updates:
 
        main
   - package-ecosystem: "docker"
+        main
     directory: "/"
     schedule:
       interval: "daily"
@@ -34,6 +67,14 @@ updates:
     open-pull-requests-limit: 5    labels:
 
     open-pull-requests-limit: 5
+    commit-message:
+      prefix: "chore(deps): actions"
     labels:
        main
       - "dependencies"
+         wonderingtribe-patch-1
+      - "github-actions"
+    versioning-strategy: "increase"
+    rebase-strategy: "auto"
+
+         main
