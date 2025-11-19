@@ -38,7 +38,7 @@
     "jest": "^29.6.1",
     "require-directory": "^2.1.1",
     "sqlite3": "^5.1.7",
-    "stripe": "^19.3.0",
+    "stripe": "^20.0.0",
     "undertaker": "^2.0.0"
   
   },
