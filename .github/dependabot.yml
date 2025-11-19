@@ -1,5 +1,6 @@
 version: 2
 updates:
+  # NPM dependencies
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
@@ -8,18 +9,31 @@ updates:
     labels:
       - "dependencies"
 
+        wonderingtribe-patch-2
+  # GitHub Actions
+
+       main
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "daily"
     open-pull-requests-limit: 5
+       wonderingtribe-patch-2
+
+  # Docker (only if used)
+
     labels:
       - "dependencies"
 
+       main
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
       interval: "daily"
+       wonderingtribe-patch-2
+    open-pull-requests-limit: 5    labels:
+
     open-pull-requests-limit: 5
     labels:
+       main
       - "dependencies"
