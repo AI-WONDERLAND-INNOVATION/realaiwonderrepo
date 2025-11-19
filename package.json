@@ -28,7 +28,7 @@
   "devDependencies": {
     "@babel/preset-env": "^7.28.5",
     "@babel/preset-react": "^7.28.5",
-    "@dotenvx/dotenvx": "^1.40.0",
+    "@dotenvx/dotenvx": "^1.51.1",
     "@eslint/js": "^9.39.1",
     "browser-sync": "^3.0.4",
     "eslint": "^8.57.1",
