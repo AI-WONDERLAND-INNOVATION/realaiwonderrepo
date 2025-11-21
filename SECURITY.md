@@ -27,7 +27,7 @@ If you find a security issue beyond dependencies (logic flaws, auth issues, leak
 
 Report through:
 - GitHub **Private Security Advisory**, or  
-- Email: **security@yourdomain.com**
+- Email: **b1161976969@gmail.com**
 
 Please include:
 - Steps to reproduce  
