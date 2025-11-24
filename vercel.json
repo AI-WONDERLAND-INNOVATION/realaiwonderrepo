@@ -3,8 +3,15 @@
     {
       "src": "frontend-builder/package.json",
       "use": "@vercel/static-build",
-      "config": { "distDir": "build" }
+      "config": {
+        "distDir": "dist"
+      }
     }
   ],
-  "routes": []
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
 }
